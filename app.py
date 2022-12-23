@@ -90,6 +90,16 @@ def drawimg():
 
     size = request.args.get("sizeselect")
     bgimg = request.args.get("imgselect")
+
+    try:
+        if (int(bgimg) > 3 or int(bgimg) < 1):
+            print("invalid int")
+            print(int(bgimg))
+            return render_template("notfound.html")
+    except ValueError:
+        print("not an int")
+        return render_template("notfound.html")
+        
     color = request.args.get("colorselect")
     print(color)
 
