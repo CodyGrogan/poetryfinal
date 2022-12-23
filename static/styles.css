@@ -1,0 +1,50 @@
+.no-wrap{
+    white-space: pre-wrap;
+}
+
+.selectionbox{
+    text-align: left;
+}
+
+.bgimg{
+    max-width: 200px;
+}
+
+.poemdb{
+    padding: 15px;
+    margin: 15px;
+}
+
+.navbtn{
+    position: relative;
+}
+
+.navbtn:hover .chn{
+    position: absolute;
+    top: 0%;
+    left: 20%;
+    display: inline;
+    font-size: 36px;
+    font-style: italic;
+    opacity: 0.5;
+    -webkit-animation: fadein 1s;
+       -moz-animation: fadein 1s;
+        -ms-animation: fadein 1s;
+         -o-animation: fadein 1s;
+            animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 0.5; }
+}
+
+.navbtn:hover .eng{
+    display: none;
+}
+
+.chn{
+    display: none;
+
+}
+

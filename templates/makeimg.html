@@ -1,0 +1,169 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div class="container">
+
+    <form action = "/draw" method="GET">
+
+        <div class="row">
+
+            <div class="col">
+
+        <div class="mb-3 selectionbox">
+            <label for="styleselect" class="form-label">Poem Selection Type</label>
+            <select id="styleselect" class="form-select" name="styleselect">
+
+
+                    <option>
+                        By Title
+                    </option>
+                    <option>
+                        By Tag or Author
+                    </option>
+
+
+
+
+
+            </select>
+        </div>
+        </div>
+
+
+
+        <div class="col">
+
+        <div id="titleselect" class="mb-3 selectionbox">
+            <label for="poemselect" class="form-label">Pick a poem by title</label>
+            <select id="poemselect" class="form-select" name="poemselect">
+
+                {% for poem in poems %}
+                    <option>
+                        {{poem["title"]}}
+                    </option>
+                {% endfor %}
+
+
+
+            </select>
+        </div>
+
+
+        <div id="tagselect" style="display: none">
+        <div class="mb-3 selectionbox" id="tag" >
+
+
+
+              {% for tag in tags %}
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{tag}}" name="checktag" id="check{{tag}}" >
+                <label class="form-check-label" for="check{{tag}}">
+                    {{tag}}
+                </label>
+              </div>
+            {% endfor %}
+
+
+
+        </div>
+
+        <div class="mb-3 selectionbox" id="author" >
+            <label for="authorselect" class="form-label">Pick a poem by Author</label>
+            <select id="authorselect" class="form-select" name="authorselect">
+
+                {% for author in authors %}
+                    <option>
+                        {{author["author"]}}
+                    </option>
+                {% endfor %}
+
+
+
+            </select>
+        </div>
+
+        </div>
+
+        </div>
+
+    </div>
+
+
+
+        <div class="mb-3 selectionbox">
+
+            <label for="fontselect" class="form-label" name="fontselect">Pick a font</label>
+
+            <select id="fontselect" class="form-select" name="fontselect">
+
+                {% for font in fonts %}
+                <option>
+                    {{font}}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3 selectionbox">
+
+            <label for="colorselect" class="form-label" name="colorselect">Pick a Color</label>
+
+            <input type="color" class="form-control form-control-color" id="colorselect" name="colorselect" value="#ffffff">
+        </div>
+
+        <div class="mb-3 selectionbox">
+
+            <label for="sizeselect" class="form-label" name="fontselect">Pick a font size</label>
+
+            <input class="form-control" type="number" id="sizeselect" name="sizeselect" value="24"/>
+
+        </div>
+
+        <div class="mb-3 selectionbox">
+
+            <p>Pick a background</p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="imgselect" value="1" name="imgselect" checked>
+                <label class="form-check-label " for="imgselect"> <img class="bgimg" src="/static/images/1.png"/> </label> </br>
+                <input class="form-check-input" type="radio" id="imgselect" value="2" name="imgselect" checked>
+                <label class="form-check-label " for="imgselect"> <img class="bgimg" src="/static/images/2.png"/> </label></br>
+                <input class="form-check-input" type="radio" id="imgselect" value="3" name="imgselect" checked>
+                <label class="form-check-label " for="imgselect"> <img class="bgimg" src="/static/images/3.png"/> </label></br>
+            </div>
+
+        </div>
+
+            <button class="btn btn-primary" type="submit">Submit!</button>
+
+
+    </form>
+
+
+
+
+</div>
+
+<script>
+    let styleselection = document.getElementById("styleselect");
+    let titleselect = document.getElementById("titleselect");
+    let tagselect = document.getElementById("tagselect");
+
+
+    styleselection.addEventListener("click", function(){
+        var selection = styleselection.value;
+        if (selection == "By Tag or Author"){
+            titleselect.style.display ="none";
+            tagselect.style.display = "block";
+            console.log('tag selected')
+        }
+        else{
+            titleselect.style.display ="block";
+            tagselect.style.display = "none";
+            console.log('title selected')
+
+        }
+
+    });
+</script>
+{% endblock %}

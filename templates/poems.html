@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<div class="poemdb" >
+    <table id="myTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Tags</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+
+            {% for poem in poems %}
+
+            <tr>
+                <td><a href='poem?title={{poem["title"]}}'>{{poem["title"]}}</a></td>
+                <td>{{poem["author"]}}</td>
+
+                <td>{{poem["tags"]}}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
+</div>
+{% endblock %}
