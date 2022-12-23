@@ -71,7 +71,9 @@
         <div class="mb-3 selectionbox" id="author" >
             <label for="authorselect" class="form-label">Pick a poem by Author</label>
             <select id="authorselect" class="form-select" name="authorselect">
-
+                <option>
+                    Any
+                </option>
                 {% for author in authors %}
                     <option>
                         {{author["author"]}}

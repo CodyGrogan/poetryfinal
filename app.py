@@ -90,6 +90,10 @@ def drawimg():
 
     size = request.args.get("sizeselect")
     bgimg = request.args.get("imgselect")
+    color = request.args.get("colorselect")
+    
+    if (style == None or size == None or bgimg == None or color == None ):
+        return render_template("notfound.html")
 
     try:
         if (int(bgimg) > 3 or int(bgimg) < 1):
@@ -99,8 +103,7 @@ def drawimg():
     except ValueError:
         print("not an int")
         return render_template("notfound.html")
-        
-    color = request.args.get("colorselect")
+
     print(color)
 
     match = re.search(r'^#(?:[0-9a-fA-F]{3}){1,2}$', color)  #from stack overflow, uses regular expressions to check if string is a valid hexadecimal before trying to convert hex to RGB. prevents crashes if user somehow gives invalid color
